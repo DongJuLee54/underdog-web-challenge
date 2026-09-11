@@ -1,37 +1,54 @@
-/* 1. 페이지 전체 배경색과 기본 글자색 */
+/* 1. 기본 배경 및 글자색 */
 body {
-  background-color: #f4f7f6; /* 아주 연한 회색/민트빛 배경 */
-  color: #333333;            /* 너무 까맣지 않은 짙은 회색 글씨 */
+  background-color: #f4f7f6;
+  color: #333333;
 }
 
-/* 2. 제목 크기와 색상 변경 */
-h1 {
-  font-size: 32px;
-  color: #2c3e50;
-}
-h2 {
-  font-size: 24px;
-  color: #34495e;
+/* [추가됨!] 2. 전체 내용을 화면 가운데로 모아주기 */
+.container {
+  max-width: 900px;  /* 아무리 화면이 커져도 최대 900px까지만 늘어남 */
+  margin: 0 auto;    /* 위아래 여백은 0, 양옆은 '자동(auto)'으로 둬서 가운데 정렬 */
+  padding: 20px;
 }
 
-/* 3. 각 section에 여백과 테두리 적용 */
+/* 3. 제목 크기와 색상 */
+h1 { font-size: 32px; color: #2c3e50; }
+h2 { font-size: 24px; color: #34495e; margin-top: 0; }
+
+/* 4. 각 구역 디자인 */
 section {
-  background-color: white;   /* 구역 안은 하얀색으로 돋보이게 */
-  border: 1px solid #dddddd; /* 연한 회색 테두리 */
-  margin: 20px;              /* 구역 바깥쪽으로 20px 띄우기 (다른 구역과의 간격) */
-  padding: 20px;             /* 구역 안쪽으로 20px 띄우기 (테두리와 글자 사이의 간격) */
-  border-radius: 8px;        /* 구역 모서리를 살짝 둥글게 */
+  background-color: white;
+  border: 1px solid #dddddd;
+  margin-bottom: 20px;
+  padding: 20px;
+  border-radius: 8px;
 }
 
-/* 4. 프로필 이미지 크기 조절 및 완전 둥글게 만들기 */
+/* 5. 프로필 이미지 원형으로 */
 img {
   width: 150px;
-  border-radius: 50%; /* 50%를 주면 완벽한 동그라미가 됩니다 */
+  border-radius: 50%;
 }
 
-/* 5. 링크가 눈에 띄도록 꾸미기 */
-a {
-  color: #007bff;
-  text-decoration: none; /* 기본 밑줄 제거 */
-  font-weight: bold;
+/* [추가됨!] 6. 사진과 글씨를 가로로 배치 (Flexbox) */
+.profile {
+  display: flex;       /* 요소들을 가로로 나란히 배치 */
+  gap: 24px;           /* 사진과 글씨 사이의 틈(간격) */
+  align-items: center; /* 세로 높이를 기준으로 가운데 정렬 */
 }
+
+/* 7. 링크 디자인 */
+a { color: #007bff; text-decoration: none; font-weight: bold; }
+
+/* [추가됨!] 8. 스마트폰(좁은 화면)을 위한 미디어 쿼리 */
+@media (max-width: 600px) {
+  .profile {
+    flex-direction: column; /* 화면이 600px 이하가 되면 가로 배치를 '세로'로 바꿈 */
+    text-align: center;     /* 글자를 중앙 정렬하여 예쁘게 보이게 함 */
+  }
+}
+/* 다크 모드가 켜졌을 때의 디자인 */
+body.dark-theme { background-color: #1a1a1a; color: #f4f7f6; }
+body.dark-theme section { background-color: #2c2c2c; border-color: #444; }
+body.dark-theme h1, body.dark-theme h2 { color: #ffffff; }
+body.dark-theme a { color: #4dabf7; }
